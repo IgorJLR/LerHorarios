@@ -1,9 +1,0 @@
-{
-  "license":"MIT",
-
-  "dependencies": {
-    "chrome": "^0.1.0",
-    "chromedriver": "^116.0.0",
-    "selenium-webdriver": "^4.11.1"
-  }
-}
