@@ -4,6 +4,10 @@ let chrome = {};
 let puppeteer;
 let validacao = true
 
+export const config = {
+  runtime: 'edge',
+};
+
 let ultimaConsulta = {
   turma: 'asd',
   horario: 'asd',
