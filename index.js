@@ -4,9 +4,6 @@ let chrome = {};
 let puppeteer;
 let validacao = true
 
-export const config = {
-  runtime: 'edge',
-};
 
 let ultimaConsulta = {
   turma: 'asd',
@@ -275,7 +272,7 @@ app.get("/api", async (req, res) => {
               
           }
 
-
+           res.send(horariosJsonFinal)
           //console.log("aaa",horariosJsonFinal[horariosJsonFinal.length -1],ultimaConsulta,validacao,"fffff");
         }
 
