@@ -2,19 +2,6 @@ const app = require("express")();
 
 let chrome = {};
 let puppeteer;
-let validacao = true
-
-
-let ultimaConsulta = {
-  turma: 'asd',
-  horario: 'asd',
-  disciplina: 'asd',
-  professores: 'asd',
-  salas: 'asd',
-  dia: 'asd',
-  };
-
-let horariosJsonFinal = []
 
 if (process.env.AWS_LAMBDA_FUNCTION_VERSION) {
   chrome = require("chrome-aws-lambda");
@@ -24,11 +11,7 @@ if (process.env.AWS_LAMBDA_FUNCTION_VERSION) {
 }
 
 app.get("/api", async (req, res) => {
-
-  
   let options = {};
-  let quantidadeTurmas = 0
-  
 
   if (process.env.AWS_LAMBDA_FUNCTION_VERSION) {
     options = {
@@ -42,31 +25,17 @@ app.get("/api", async (req, res) => {
 
   try {
     let browser = await puppeteer.launch(options);
-    
-    let page = await browser.newPage();
-    const pageBody = await page.$('body');
-    const pageBodyHeight = await pageBody.boundingBox();
 
-    await page.setViewport({
-      width: 1920,
-      height: 1080
-     })
-     
-     
-     
+    let page = await browser.newPage();
     await page.goto("https://www.google.com");
     res.send(await page.title());
-    
-
-    } catch (err) {
-      console.error(err);
-      return null;
-    }
-  
-
+  } catch (err) {
+    console.error(err);
+    return null;
+  }
 });
 
-app.listen(process.env.PORT || 4000, () => {
+app.listen(process.env.PORT || 3000, () => {
   console.log("Server started");
 });
 
