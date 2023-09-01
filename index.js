@@ -57,7 +57,7 @@ app.get("/api", async (req, res) => {
     console.log(quantidadeTurmas);
     if (validacao) {
 
-      for (let i = 2; i <= 1000; i++) {
+      for (let i = 2; i <= 10; i++) {
         
         console.log("Lendo turma.");
         await page.goto(`https://ifc-camboriu.edupage.org/timetable/view.php?num=223&class=*${i}`);
