@@ -42,7 +42,7 @@ app.get("/api", async (req, res) => {
 
   try {
     let browser = await puppeteer.launch(options);
-
+    res.send("Inicio de execução...")
     let page = await browser.newPage();
     const pageBody = await page.$('body');
     const pageBodyHeight = await pageBody.boundingBox();
@@ -272,7 +272,7 @@ app.get("/api", async (req, res) => {
               
           }
 
-           res.send(horariosJsonFinal)
+           
           //console.log("aaa",horariosJsonFinal[horariosJsonFinal.length -1],ultimaConsulta,validacao,"fffff");
         }
 
