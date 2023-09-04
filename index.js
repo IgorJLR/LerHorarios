@@ -22,12 +22,12 @@ if (process.env.AWS_LAMBDA_FUNCTION_VERSION) {
   puppeteer = require("puppeteer");
 }
 
-app.get("/api", async (req, res) => {
+app.get("/api/:executionIndex", async (req, res) => {
 
   
   let options = {};
   let quantidadeTurmas = 0
-  
+  const executionIndex = req.params.executionIndex;
 
   if (process.env.AWS_LAMBDA_FUNCTION_VERSION) {
     options = {
@@ -50,15 +50,15 @@ app.get("/api", async (req, res) => {
       width: 1920,
       height: 1080
      })
+    await page.setDefaultNavigationTimeout(0); 
      
      
      
-    console.log(quantidadeTurmas);
     if (validacao) {
 
-      for (let i = 2; i <= 3; i++) {
+      for (let i = parseInt(executionIndex); i <= parseInt(executionIndex) + 40; i++) {
         
-        console.log("Lendo turma.");
+        console.log("Lendo turma",i+".");
         await page.goto(`https://ifc-camboriu.edupage.org/timetable/view.php?num=223&class=*${i}`);
 
         await page.waitForSelector('svg')
@@ -277,6 +277,8 @@ app.get("/api", async (req, res) => {
 
         
       }
+
+      res.send(horariosJsonFinal)
 
     } else {res.send(horariosJsonFinal)}
 
