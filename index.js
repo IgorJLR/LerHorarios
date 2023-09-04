@@ -56,7 +56,7 @@ app.get("/api/:executionIndex", async (req, res) => {
      
     if (validacao) {
 
-      for (let i = parseInt(executionIndex); i <= parseInt(executionIndex) + 40; i++) {
+      for (let i = parseInt(executionIndex); i <= parseInt(executionIndex) + 1; i++) {
         
         console.log("Lendo turma",i+".");
         await page.goto(`https://ifc-camboriu.edupage.org/timetable/view.php?num=223&class=*${i}`);
